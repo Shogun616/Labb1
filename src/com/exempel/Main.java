@@ -4,11 +4,64 @@ import java.util.Scanner;
 
 public class Main {
 
-	public static void main(String[] args) {
-		Scanner scan = new Scanner(System.in);
+	static Scanner scan = new Scanner(System.in);
 
-		String spelare1;
-		String spelare2;
+	public static void main(String[] args) {
+
+		String[] choices = {"sten", "sax", "påse"};
+
+		String playersChoice;
+		boolean exit = false;
+
+		System.out.println("Välkommen till dice of Doom (Skriv e för att avsluta)");
+
+		while (!exit){
+			int computerRand = (int) (Math.random() * 3);
+			String computerChoice = choices[computerRand];
+
+			System.out.println("Datorn " + computerChoice);
+
+			System.out.print("Sten, sax eller påse? ");
+			playersChoice = scan.nextLine().toLowerCase();
+
+			switch (playersChoice) {
+				case "e":
+					exit = true;
+					System.out.println("Stänger ner spelet nu");
+					break;
+				case "sten":
+					if (computerChoice.equals("sax")) {
+						System.out.println("Du vann");
+					} else {
+						System.out.println("Datorn vann");
+					}
+
+					break;
+				case "påse":
+					if (computerChoice.equals("sten")) {
+						System.out.println("Du vann");
+					} else {
+						System.out.println("Datorn vann");
+					}
+
+					break;
+				case "sax":
+					if (computerChoice.equals("påse")) {
+						System.out.println("Du vann");
+					} else {
+						System.out.println("Datorn vann");
+					}
+					break;
+				default:
+					System.out.println("Det blev något fel...");
+					break;
+			}
+		}
+
+	}
+
+	static void dice(){
+
 		int antalKast = 5;
 		int antalSidor = 6;
 		int summaSpelare1 = 0;
@@ -27,8 +80,8 @@ public class Main {
 			summaSpelare1 += kastArray[0];
 			summaSpelare2 += kastArray[1];
 		}
-			System.out.println("Summa för spelare 1 är: " + summaSpelare1);
-			System.out.println("Summa för spelare 2 är: " + summaSpelare2);
+		System.out.println("Summa för spelare 1 är: " + summaSpelare1);
+		System.out.println("Summa för spelare 2 är: " + summaSpelare2);
 	}
 
 }
