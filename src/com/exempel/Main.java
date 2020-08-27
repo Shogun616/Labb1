@@ -10,7 +10,7 @@ public class Main {
 
 		String[] choices = {"sten", "sax", "påse"};
 
-		String playersChoice;
+		String playerChoice;
 		boolean exit = false;
 
 		System.out.println("Välkommen till dice of Doom (Skriv e för att avsluta)");
@@ -19,42 +19,42 @@ public class Main {
 			int computerRand = (int) (Math.random() * 3);
 			String computerChoice = choices[computerRand];
 
+			System.out.print("Sten, sax eller påse? ");
+			playerChoice = scan.nextLine().toLowerCase();
+
 			System.out.println("Datorn " + computerChoice);
 
-			System.out.print("Sten, sax eller påse? ");
-			playersChoice = scan.nextLine().toLowerCase();
 
-			switch (playersChoice) {
-				case "e":
-					exit = true;
-					System.out.println("Stänger ner spelet nu");
-					break;
-				case "sten":
-					if (computerChoice.equals("sax")) {
-						System.out.println("Du vann");
-					} else {
-						System.out.println("Datorn vann");
-					}
-
-					break;
-				case "påse":
-					if (computerChoice.equals("sten")) {
-						System.out.println("Du vann");
-					} else {
-						System.out.println("Datorn vann");
-					}
-
-					break;
-				case "sax":
-					if (computerChoice.equals("påse")) {
-						System.out.println("Du vann");
-					} else {
-						System.out.println("Datorn vann");
-					}
-					break;
-				default:
-					System.out.println("Det blev något fel...");
-					break;
+			if(playerChoice.equals("q")){
+				exit = true;
+				System.out.println("Nu stänger vi ner spelet...");
+			}
+			else if (playerChoice.equals(computerChoice)) {
+				System.out.println("Det blev samma");
+			}
+			else if (playerChoice.equals("sten")) {
+				if(computerChoice.equals("sax")) {
+					System.out.println("Du vann!");
+				}else{
+					System.out.println("Datorn vann!");
+				}
+			}
+			else if (playerChoice.equals("påse")) {
+				if(computerChoice.equals("sten")) {
+					System.out.println("Du vann!");
+				}else{
+					System.out.println("Datorn vann!");
+				}
+			}
+			else if (playerChoice.equals("sax")) {
+				if(computerChoice.equals("påse")) {
+					System.out.println("Du vann!");
+				}else{
+					System.out.println("Datorn vann!");
+				}
+			}
+			else {
+				System.out.println("Det blev något fel...");
 			}
 		}
 
