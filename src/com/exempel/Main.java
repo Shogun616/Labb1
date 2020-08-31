@@ -58,7 +58,6 @@ public class Main {
 
 	static void scoreBoard(){
 
-		//int min = 0;
 		Arrays.sort(highScore);
 
 		System.out.println();
@@ -69,11 +68,12 @@ public class Main {
 			System.out.println(highScore[i]);
 		}
 
-	/*	for(int j = 1; j < highScore.length; j++){
+		int min = 0;
+		for(int j = 1; j < highScore.length; j++){
 			if(highScore[j] < highScore[min]){
 				min = j;
 			}
-		}*/
+		}
 	}
 
 	public static void main(String[] args) {
