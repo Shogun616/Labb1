@@ -63,7 +63,6 @@ public class Main {
 		System.out.println();
 		System.out.println("High Score");
 
-
 		for (int i = highScore.length-1; i >=0; i--) {
 			System.out.println(highScore[i]);
 		}
