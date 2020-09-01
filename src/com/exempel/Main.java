@@ -89,8 +89,9 @@ public class Main {
 		System.out.println("3. HighScore");
 		System.out.println("0. Exit");
 
-		System.out.println("\nMake tour choice");
+		System.out.println("\nMake your choice");
 		int choice = scan.nextInt();
+		scan.nextLine();
 
 		switch (choice){
 
@@ -112,6 +113,9 @@ public class Main {
 
 			case 3:
 				scoreBoard();
+				System.out.println();
+				System.out.println("Press Enter to show menu");
+				scan.nextLine();
 				menu();
 				break;
 
