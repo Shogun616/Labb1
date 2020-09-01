@@ -19,6 +19,7 @@ public class Main {
 
 		System.out.print("Hur många kast vill du ange? ");
 		int numberOfThrow = scan.nextInt();
+		decision = scan.nextLine();
 
 		int sumComputer = 0;
 		int sumPlayer = 0;
@@ -95,6 +96,7 @@ public class Main {
 
 			case 0:
 				repeat = false;
+				exit = true;
 				System.out.println("Avslutar spelet nu...");
 				break;
 
@@ -110,24 +112,23 @@ public class Main {
 
 			case 3:
 				scoreBoard();
+				menu();
 				break;
 
 			default:
 				System.out.println("Ogiltig val!");
-
 		}
 	}
 
 	static void options(){
 
-		while (!exit){
+		while (!exit) {
 			decision = scan.nextLine().toLowerCase();
 
-			if(decision.equals("nej")){
+			if (decision.equals("nej")) {
 				repeat = true;
 				menu();
-			}
-			else if (decision.equals("ja")){
+			} else if (decision.equals("ja")) {
 				diceGames();
 			}
 		}
