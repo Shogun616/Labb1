@@ -7,15 +7,18 @@ public class Main {
 
 	static Scanner scan = new Scanner(System.in);
 
-	static String choice;
-
 	static int[] highScore = new int[5];
+
+	static boolean repeat = true;
+
+	static boolean exit = false;
+
+	static String decision;
 
 	static void diceGames(){
 
 		System.out.print("Hur många kast vill du ange? ");
 		int numberOfThrow = scan.nextInt();
-		choice = scan.nextLine().toLowerCase();
 
 		int sumComputer = 0;
 		int sumPlayer = 0;
@@ -53,7 +56,7 @@ public class Main {
 		}
 
 		System.out.println();
-		System.out.println("Fortsätta? (ja/nej)");
+		System.out.println("Fortsätta (ja/nej)");
 	}
 
 	static void scoreBoard(){
@@ -62,6 +65,7 @@ public class Main {
 
 		System.out.println();
 		System.out.println("High Score");
+		System.out.println("==========");
 
 		for (int i = highScore.length-1; i >=0; i--) {
 			System.out.println(highScore[i]);
@@ -75,24 +79,63 @@ public class Main {
 		}
 	}
 
-	public static void main(String[] args) {
+	static void menu(){
+		System.out.println("\n======================================");
+		System.out.println("              Main Menu             ");
+		System.out.println("======================================");
+		System.out.println("1. Player VS Computer");
+		System.out.println("2. Player Vs Player");
+		System.out.println("3. HighScore");
+		System.out.println("0. Exit");
 
-		boolean exit = false;
-		System.out.println("Välkommen till Dicegame, starta? (ja/nej)");
+		System.out.println("\nMake tour choice");
+		int choice = scan.nextInt();
+
+		switch (choice){
+
+			case 0:
+				repeat = false;
+				System.out.println("Avslutar spelet nu...");
+				break;
+
+			case 1:
+				System.out.println("Välkommen till Dicegame PvE, starta? (ja/nej)");
+				options();
+				break;
+
+			case 2:
+				System.out.println("Välkommen till DiceGame PvP, starta? (ja/nej)");
+				options();
+				break;
+
+			case 3:
+				scoreBoard();
+				break;
+
+			default:
+				System.out.println("Ogiltig val!");
+
+		}
+	}
+
+	static void options(){
 
 		while (!exit){
-			choice = scan.nextLine().toLowerCase();
+			decision = scan.nextLine().toLowerCase();
 
-			if(choice.equals("nej")){
-				exit = true;
-				System.out.println("Avslutar spelet nu...");
+			if(decision.equals("nej")){
+				repeat = true;
+				menu();
 			}
-			else if (choice.equals("ja")){
+			else if (decision.equals("ja")){
 				diceGames();
-			}else {
-				exit = true;
-				System.out.println("Ett problem har uppståt...");
 			}
+		}
+	}
+
+	public static void main(String[] args) {
+		while (repeat){
+			menu();
 		}
 	}
 }
