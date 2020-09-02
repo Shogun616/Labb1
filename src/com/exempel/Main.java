@@ -13,6 +13,8 @@ public class Main {
 
 	static boolean exit = false;
 
+	static boolean choice = false;
+
 	static String decision;
 
 	static int counter = 5;
@@ -38,7 +40,6 @@ public class Main {
 			System.out.println("Spelar: " + playersThrow);
 			System.out.println("Dator: " + computersThrow);
 			System.out.println();
-
 		}
 
 		System.out.println("Summa för spelare är: " + sumPlayer);
@@ -60,9 +61,10 @@ public class Main {
 
 		System.out.println();
 		System.out.println("Fortsätta (ja/nej)");
+		choice();
 	}
 
-	static void diceGames2(){
+	/*static void diceGames2(){
 		System.out.print("Hur många kast vill du ange? ");
 		int numberOfThrow = scan.nextInt();
 		decision = scan.nextLine();
@@ -104,7 +106,7 @@ public class Main {
 
 		System.out.println();
 		System.out.println("Fortsätta (ja/nej)");
-	}
+	} */
 
 	static void scoreBoard(){
 
@@ -114,14 +116,15 @@ public class Main {
 		System.out.println("High Score");
 		System.out.println("==========");
 
+
 		for (int i = highScore.length-1; i >=0; i--) {
 			System.out.println(highScore[i]);
-		}
 
-		int min = 0;
-		for(int j = 1; j < counter; j++){
-			if(highScore[j] < highScore[min]){
-				min = j;
+			int min = 0;
+			for(int j = 1; j < counter; j++){
+				if(highScore[j] < highScore[min]){
+					min = j;
+				}
 			}
 		}
 	}
@@ -142,7 +145,7 @@ public class Main {
 		switch (choice){
 
 			case 0:
-				System.out.println("Avlsuta?");
+				System.out.println("Avsluta? (ja/nej)");
 				options();
 				repeat = false;
 				System.out.println("Avslutar spelet nu...");
@@ -155,7 +158,7 @@ public class Main {
 
 			case 2:
 				System.out.println("Välkommen till DiceGame PvP");
-				diceGames2();
+				//diceGames2();
 				break;
 
 			case 3:
@@ -177,10 +180,33 @@ public class Main {
 			decision = scan.nextLine().toLowerCase();
 
 			if (decision.equals("nej")) {
-				repeat = true;
+				exit = true;
 				menu();
 			} else if (decision.equals("ja")) {
 				exit = true;
+			}
+		}
+	}
+
+	static void choice(){
+		while (!choice){
+			decision = scan.nextLine().toLowerCase();
+
+			switch (decision) {
+				case "nej":
+					choice = true;
+					menu();
+					break;
+				case "ja":
+					diceGames();
+					break;
+				//case "ja":
+				//	diceGames2();
+				//	break;
+				default:
+					choice = true;
+					System.out.println("Ett problem har uppståt...");
+					break;
 			}
 		}
 	}
