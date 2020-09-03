@@ -20,7 +20,7 @@ public class Main {
 	static int counter = 5;
 
 	static void diceGames(){
-
+        // Choose number of dice
 		System.out.print("Hur många kast vill du ange? ");
 		int numberOfThrow = scan.nextInt();
 		decision = scan.nextLine();
@@ -29,22 +29,25 @@ public class Main {
 		int sumPlayer = 0;
 		int position = 0;
 
-		for (int i = 0; i < numberOfThrow; i++){
+		for (int i = 1; i < numberOfThrow; i++){
 			int computersThrow = (int) (Math.random()*6+1);
 			int playersThrow = (int) (Math.random()*6+1);
 
 
-			sumPlayer += sumPlayer + playersThrow;
-			sumComputer += sumComputer + computersThrow;
+			sumPlayer = sumPlayer + playersThrow;
+			sumComputer = sumComputer + computersThrow;
 
-			System.out.println("Spelar: " + playersThrow);
-			System.out.println("Dator: " + computersThrow);
+			System.out.println("Spelar");
+			System.out.println("Tärningskast: " + playersThrow);
+			System.out.println("Dator");
+			System.out.println("Tärningskast: " + computersThrow);
 			System.out.println();
 		}
 
 		System.out.println("Summa för spelare är: " + sumPlayer);
 		System.out.println("Summa för datorn är: " + sumComputer);
 
+		// an if-statement that will print the results
 		if(sumPlayer > sumComputer){
 			System.out.println("Spelare vann");
 			highScore[position] = sumPlayer;
@@ -64,49 +67,41 @@ public class Main {
 		choice();
 	}
 
-	/*static void diceGames2(){
+	static void diceGames2(){
+		System.out.println("Ange antal spelare: ");
+		int numberOfPlayer = scan.nextInt();
+
 		System.out.print("Hur många kast vill du ange? ");
 		int numberOfThrow = scan.nextInt();
 		decision = scan.nextLine();
 
-		int sumPlayer1 = 0;
-		int sumPlayer2 = 0;
 		int position = 0;
 
-		for (int i = 0; i < numberOfThrow; i++){
-			int player1sThrow = (int) (Math.random()*6+1);
-			int player2sThrow = (int) (Math.random()*6+1);
+		int[] sumPlayer = new int[6];
 
+		for(int i=1; i <= numberOfPlayer; i++) {
+			System.out.println("Spelare " + i + ".");
 
-			sumPlayer1 += sumPlayer1 + player1sThrow;
-			sumPlayer2 += sumPlayer2 + player2sThrow;
+			for(int j = 1; j < numberOfThrow; j++) {
+				System.out.println("Tärningskast " + j + " (spelare: " + i + ").");
+				int playersThrow = (int) (1+Math.random()*6);
 
-			System.out.println("Spelare 1: " + player1sThrow);
-			System.out.println("Spelare 2: " + player2sThrow);
+				System.out.println("Spelare: " + i + " kast: " + playersThrow);
+
+				sumPlayer[i] = sumPlayer[i] + playersThrow;
+			}
+			System.out.println("Summa spelare " + i + ": " + sumPlayer[i]);
 			System.out.println();
-
-		}
-
-		System.out.println("Summa för spelare 1 är: " + sumPlayer1);
-		System.out.println("Summa för spelare 2 är: " + sumPlayer2);
-
-		if(sumPlayer1 > sumPlayer2){
-			System.out.println("Spelare 1 vann");
-			highScore[position] = sumPlayer1;
+			highScore[position] = sumPlayer[i];
 			position++;
 			scoreBoard();
-		}else if(sumPlayer1 < sumPlayer2){
-			System.out.println("Spelare 2 vann");
-			highScore[position] = sumPlayer2;
-			position++;
-			scoreBoard();
-		} else {
-			System.out.println("Ovagjort");
+			System.out.println();
 		}
 
 		System.out.println();
 		System.out.println("Fortsätta (ja/nej)");
-	} */
+		choice2();
+	}
 
 	static void scoreBoard(){
 
@@ -158,7 +153,7 @@ public class Main {
 
 			case 2:
 				System.out.println("Välkommen till DiceGame PvP");
-				//diceGames2();
+				diceGames2();
 				break;
 
 			case 3:
@@ -200,9 +195,26 @@ public class Main {
 				case "ja":
 					diceGames();
 					break;
-				//case "ja":
-				//	diceGames2();
-				//	break;
+				default:
+					choice = true;
+					System.out.println("Ett problem har uppståt...");
+					break;
+			}
+		}
+	}
+
+	static void choice2(){
+		while (!choice){
+			decision = scan.nextLine().toLowerCase();
+
+			switch (decision) {
+				case "nej":
+					choice = true;
+					menu();
+					break;
+				case "ja":
+					diceGames2();
+					break;
 				default:
 					choice = true;
 					System.out.println("Ett problem har uppståt...");
