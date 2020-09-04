@@ -11,7 +11,7 @@ public class Main {
 
     static boolean repeat = true;
 
-    static boolean exit = false;
+    static boolean exit = true;
 
     static String decision;
 
@@ -161,14 +161,14 @@ public class Main {
 
     static void options() {
 
-        while (!exit) {
+        while (exit) {
             decision = scan.nextLine();
 
             if (decision.equalsIgnoreCase("nej")) {
-                exit = true;
+                exit = false;
                 menu();
             } else if (decision.equalsIgnoreCase("ja")) {
-                exit = true;
+                exit = false;
             }
         }
     }
